@@ -78,7 +78,7 @@ int main(void)
     open_port();
     
 	//while ( read_port() ) 
-	for (int i = 0 ; i < 10 ; i++ )
+	for (int i = 0 ; i < 3 ; i++ )
 	{
 		read_port();
 		
