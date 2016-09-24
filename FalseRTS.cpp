@@ -82,7 +82,7 @@ int main(void)
 	{
 		read_port();
 		
-		frame_read.can_id = masker_get & frame_read.can_id;
+		frame_read.can_id = 100;
 		char bytes[sizeof frame_read.can_id];
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
         static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
