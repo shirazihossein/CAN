@@ -50,7 +50,6 @@ int open_port()
 
 int read_port()
 {
-	printf("1");
 	int recvbytes = 0;
 	recvbytes = read(s, &frame_read, sizeof(struct can_frame));
 	return recvbytes;
