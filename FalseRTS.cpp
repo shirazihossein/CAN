@@ -82,18 +82,12 @@ int main(void)
 	{
 		read_port();
 		
-		frame_read.can_id = frame_read.can_id & masker_get;
+		
 		char bytes[sizeof frame_read.can_id];
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
         static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
 		
-		for (i = 0; i < 4; i++)
-		{
-			if (i > 0) printf(":");
-			printf("%02X", bytes[i]);
-		}
-		printf("\n");
-		
+		printf("%02X", bytes[1]);
 		
 		 
 		//print_can_frame(frame_read);
