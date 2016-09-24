@@ -82,8 +82,7 @@ int main(void)
 		
 		
 		char bytes[sizeof frame_read.can_id];
-		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
-        static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
+		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
         
         if ( bytes[1] == 0x3F )
         {
@@ -99,12 +98,14 @@ int main(void)
 		QueueMessages.push (frame_read);
 	}
 	
+	/*
 	while (!QueueMessages.empty())
 	{
 		struct can_frame a = QueueMessages.front();
 		print_can_frame(a);
 		QueueMessages.pop();
 	}
+	*/
 	
 	
 	/*
