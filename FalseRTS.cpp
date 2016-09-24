@@ -23,6 +23,10 @@ struct ifreq ifr;
 struct can_frame frame_read;
 std::queue<can_frame> QueueMessages;
 
+unsigned int masker_send = 2147483648
+unsigned int masker_get = 2147483647
+
+
 int open_port()
 {
 	if((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {
@@ -77,7 +81,8 @@ int main(void)
 	for (int i = 0 ; i < 10 ; i++ )
 	{
 		read_port();
-	
+		
+		frame_read.can_id = masker_get & frame_read.can_id
 		char bytes[sizeof frame_read.can_id];
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
         static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
