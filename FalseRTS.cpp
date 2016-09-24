@@ -17,8 +17,6 @@ using namespace std;
 
 
 
-
-
 int s;
 int read_can_port;
 char ifname[] = "can1";
@@ -80,9 +78,8 @@ void print_can_frame ( struct can_frame frame )
 
 
 
-void read_filter_mess()
+void read_filter_mess(char sourceAddr)
 {
-	char sourceAddr = 0xF1;
 	open_port();
 	while ( read_port() ) 
 	{
@@ -92,7 +89,7 @@ void read_filter_mess()
         if ( bytes[1] == sourceAddr )
         {
 			QueueMessages.push (frame_read);
-			printf("Find one more");
+			print_can_frame(frame_read);
 		}
 	}
 	}
@@ -101,9 +98,9 @@ void read_filter_mess()
 
 int main(void)
 {
-	thread listner (read_filter_mess);
+	thread listner (read_filter_mess , ECUAddress);
 	
-    
+ 
 	while (!QueueMessages.empty())
 	{
 		struct can_frame a = QueueMessages.front();
