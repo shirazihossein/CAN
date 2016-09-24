@@ -78,7 +78,7 @@ int main(void)
     open_port();
     
 	//while ( read_port() ) 
-	for (int i = 0 ; i < 5 ; i++ )
+	for (int i = 0 ; i < 10 ; i++ )
 	{
 		read_port();
 		
@@ -87,7 +87,7 @@ int main(void)
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
         static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
 		
-		printf("%02X", bytes[1]);
+		printf("%02X \n", bytes[1]);
 		
 		 
 		//print_can_frame(frame_read);
