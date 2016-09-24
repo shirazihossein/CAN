@@ -21,7 +21,7 @@ int nbytes;
 struct sockaddr_can addr;
 struct ifreq ifr;
 struct can_frame frame_read;
-
+std::queue<can_frame> QueueMessages;
 
 int open_port()
 {
@@ -69,23 +69,24 @@ void print_can_frame ( struct can_frame frame )
 	printf("\n");
 }
 
-
 int main(void)
 {
     open_port();
-	if ( read_port() ) 
+    
+	//while ( read_port() ) 
+	for (int i = 0 ; i < 10 ; i++ )
 	{
+		read_port();
+		//struct can_frame newFrame = frame_read;
 		print_can_frame(frame_read);
+		QueueMessages.push (frame_read);
 	}
 	
-	std::queue<can_frame> myqueue;
-	printf("myqueue contains: " ) ;
-	while (!myqueue.empty())
+	while (!QueueMessages.empty())
 	{
-		printf( " %d : " , myqueue.front() ) ;
-		myqueue.pop();
+		struct can_frame a = QueueMessages.front();
+		print_can_frame(a);
 	}
-	
 	
 	
 	/*
@@ -93,6 +94,10 @@ int main(void)
 	
 	while (1)
 	{
+		
+		
+		printf("myqueue contains: " ) ;
+		
 		
 	
 	frame.can_id  = 0x1412;
