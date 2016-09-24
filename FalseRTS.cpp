@@ -75,11 +75,10 @@ int main(void)
     open_port();
     
 	//while ( read_port() ) 
-	for (int i = 0 ; i < 10 ; i++ )
+	for (int i = 0 ; i < 10000 ; i++ )
 	{
 		read_port();
 		
-		printf("Hossein \n");
 		char bytes[sizeof frame_read.can_id];
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
         
