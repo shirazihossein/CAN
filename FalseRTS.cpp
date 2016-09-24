@@ -82,28 +82,21 @@ int main(void)
 		char bytes[sizeof frame_read.can_id];
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
         
-        if ( bytes[1] == 0x3F )
+        if ( bytes[1] == 0x00 )
         {
 			print_can_frame(frame_read);
+			QueueMessages.push (frame_read);
 		}
-        
-        
-        //char des = bytes[1] ;
-		//printf("%02X \n", des);
-		
-		 
-		
-		QueueMessages.push (frame_read);
 	}
 	
-	/*
+	
 	while (!QueueMessages.empty())
 	{
 		struct can_frame a = QueueMessages.front();
 		print_can_frame(a);
 		QueueMessages.pop();
 	}
-	*/
+	
 	
 	
 	/*
