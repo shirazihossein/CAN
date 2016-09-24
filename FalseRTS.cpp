@@ -87,6 +87,7 @@ int main(void)
 	{
 		struct can_frame a = QueueMessages.front();
 		print_can_frame(a);
+		QueueMessages.pop();
 	}
 	
 	
