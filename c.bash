@@ -1,3 +1,3 @@
-git add .
-git commit -m "First commit"
-git push origin master
+git pull
+g++ -o FalseRTS FalseRTS.cpp
+./FalseRTs
