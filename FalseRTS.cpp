@@ -81,7 +81,14 @@ int main(void)
 		char bytes[sizeof frame_read.can_id];
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
         static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
-		for (auto val : bytes) printf("\\x%.2x", val);
+		
+		for (i = 0; i < 4; i++)
+		{
+			if (i > 0) printf(":");
+			printf("%02X", bytes[i]);
+		}
+		printf("\n");
+		
 		
 		 
 		print_can_frame(frame_read);
