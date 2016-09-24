@@ -82,7 +82,7 @@ int main(void)
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
         static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
 		
-		for (i = 4; i >= 0; i--)
+		for (i = 0; i < 4; i++)
 		{
 			if (i > 0) printf(":");
 			printf("%02X", bytes[i]);
