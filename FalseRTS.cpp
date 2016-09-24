@@ -77,6 +77,13 @@ int main(void)
 	for (int i = 0 ; i < 10 ; i++ )
 	{
 		read_port();
+	
+		char bytes[sizeof frame_read.can_id];
+		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
+        static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
+		for (auto val : bytes) printf("\\x%.2x", val);
+		
+		 
 		print_can_frame(frame_read);
 		QueueMessages.push (frame_read);
 	}
