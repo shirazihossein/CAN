@@ -23,8 +23,6 @@ struct ifreq ifr;
 struct can_frame frame_read;
 std::queue<can_frame> QueueMessages;
 
-unsigned int masker_send = 2147483648;
-unsigned int masker_get = 2147483647;
 
 
 int open_port()
