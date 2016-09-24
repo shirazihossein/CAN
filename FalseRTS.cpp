@@ -96,7 +96,7 @@ int main(void)
 		
 		
 		 
-		print_can_frame(frame_read);
+		//print_can_frame(frame_read);
 		QueueMessages.push (frame_read);
 	}
 	
