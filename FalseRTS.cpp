@@ -78,11 +78,11 @@ int main(void)
     open_port();
     
 	//while ( read_port() ) 
-	for (int i = 0 ; i < 3 ; i++ )
+	for (int i = 0 ; i < 5 ; i++ )
 	{
 		read_port();
 		
-		frame_read.can_id = 100;
+		frame_read.can_id = frame_read.can_id & masker_get;
 		char bytes[sizeof frame_read.can_id];
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
         static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
