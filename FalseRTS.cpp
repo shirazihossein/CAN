@@ -85,7 +85,7 @@ int main(void)
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),
         static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
         
-        char des = bytes[1] & 0xFF ;
+        char des = bytes[1] - 255 ;
 		printf("%02X \n", des);
 		
 		 
