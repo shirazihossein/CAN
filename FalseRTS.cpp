@@ -76,6 +76,7 @@ int main(void)
 	//while ( read_port() ) 
 	for (int i = 0 ; i < 10 ; i++ )
 	{
+		printf("A");
 		read_port();
 		//struct can_frame newFrame = frame_read;
 		print_can_frame(frame_read);
