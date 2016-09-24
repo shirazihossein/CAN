@@ -62,8 +62,8 @@ int write_port(can_frame *frame )
 
 void print_can_frame ( struct can_frame frame )
 {
-	printf(" %X \t ", frame.can_id )  frame.can_dlc,frame.data);
-	for (int i = 0 , i < frame.can_dlc ; i++ )
+	printf(" %X \t ", frame.can_id );
+	for (int i = 0 ; i < frame.can_dlc ; i++ )
 		printf(" %02X " , frame.data[i] );
 
 	printf("\n");
