@@ -17,6 +17,8 @@ using namespace std;
 
 
 
+
+
 int s;
 int read_can_port;
 char ifname[] = "can1";
