@@ -13,7 +13,7 @@
 #include <linux/can/raw.h>
 #include <queue>          // std::queue
 #include <thread>
-
+using namespace std;
 
 
 
@@ -99,7 +99,7 @@ void read_filter_mess()
 
 int main(void)
 {
-	std::thread listner(read_filter_mess);
+	thread listner (read_filter_mess);
 	
     
 	while (!QueueMessages.empty())
