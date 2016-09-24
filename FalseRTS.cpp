@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <iostream>
 
 #include <net/if.h>
 #include <sys/types.h>
@@ -77,8 +78,9 @@ void print_can_frame ( struct can_frame frame )
 
 
 
-void read_filter_mess(char sourceAddr)
+void read_filter_mess()
 {
+	char sourceAddr = 0xF1;
 	open_port();
 	while ( read_port() ) 
 	{
@@ -88,7 +90,7 @@ void read_filter_mess(char sourceAddr)
         if ( bytes[1] == sourceAddr )
         {
 			QueueMessages.push (frame_read);
-			printf("Find one more")
+			printf("Find one more");
 		}
 	}
 	}
@@ -97,30 +99,17 @@ void read_filter_mess(char sourceAddr)
 
 int main(void)
 {
-	thread listner(read_filter_mess, ECUAddress);
+	std::thread listner(read_filter_mess);
+	
     
-	
-	
 	while (!QueueMessages.empty())
 	{
 		struct can_frame a = QueueMessages.front();
 		print_can_frame(a);
 		QueueMessages.pop();
 	}
-
-
-
-    // Constructs the new thread and runs it. Does not block execution.
-    
-
-    // Makes the main thread wait for the new thread to finish execution, therefore blocks its own execution.
-    t1.join();
-}
-
-
-
-
 	
+	listner.join();
 
 
 	
