@@ -4,12 +4,12 @@
  
 void foo() 
 {
-  // do stuff...
+  int a = 0;
 }
 
 void bar(int x)
 {
-  // do stuff...
+  int b = x;
 }
 
 int main() 
