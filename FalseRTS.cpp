@@ -70,26 +70,30 @@ void print_can_frame ( struct can_frame frame )
 	printf("\n");
 }
 
-int main(void)
+
+
+void read_filter_mess(char sourceAddr)
 {
-    open_port();
-    
+	open_port();
 	//while ( read_port() ) 
 	for (int i = 0 ; i < 10000 ; i++ )
 	{
 		read_port();
-		
 		char bytes[sizeof frame_read.can_id];
 		std::copy(static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)),static_cast<const char*>(static_cast<const void*>(&frame_read.can_id)) + sizeof frame_read.can_id,bytes);
-        
-        if ( bytes[1] == 0x00 )
+        if ( bytes[1] == sourceAddr )
         {
-			print_can_frame(frame_read);
 			QueueMessages.push (frame_read);
 		}
 	}
-	
-	
+	}
+
+
+
+int main(void)
+{
+    
+	read_filter_mess(0x11);
 	while (!QueueMessages.empty())
 	{
 		struct can_frame a = QueueMessages.front();
