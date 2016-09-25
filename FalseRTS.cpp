@@ -53,7 +53,6 @@ int open_port()
 	}
 }
 
-
 int read_port()
 {
 	int recvbytes = 0;
