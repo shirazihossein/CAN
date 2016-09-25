@@ -105,7 +105,7 @@ void processing_messages()
 	
 	}
 	
-void send_request()
+int send_request()
 {
 	struct can_frame frame
 	
