@@ -150,6 +150,7 @@ void processing_messages()
 				dataPacketLen = 7 * messFrame.data[3];
 				dataPacket = new char[dataPacketLen];
 				IsArrayAllocated = true;
+				printf("datapacketlen = %d \n" , dataPacketLen);
 			}
 			
 			else if ( bytes[2] = DataTransferPGN )
@@ -160,9 +161,9 @@ void processing_messages()
 					dataPacket[i + offset] = messFrame.data[i+1];
 			}
 			
-			//for (int i = 0 ; i < dataPacketLen  ; i++ )
-			//	printf(" %02X " , dataPacket[i] );
-			//printf("\n");
+			for (int i = 0 ; i < dataPacketLen  ; i++ )
+				printf(" %02X " , dataPacket[i] );
+			printf("\n");
 		}
 	}
 	
