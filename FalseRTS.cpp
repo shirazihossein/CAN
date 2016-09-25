@@ -123,7 +123,7 @@ int main(void)
 {
 	while (true)
 	{
-		
+		struct can_frame frame;
 		frame.can_id  = 0x123;
 	frame.can_dlc = 2;
 	frame.data[0] = 0x22;
