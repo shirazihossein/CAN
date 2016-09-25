@@ -23,5 +23,11 @@ while (cf[0] != first_RTS):
 
 #Third step: sending clear to send message for engine
 socket.SendMessage(false_RTS, data_len, false_RTS_data)
+
+#Third step: sending clear to send message for engine
+socket.SendMessage(false_RTS, data_len, false_RTS_data)
+
+#Third step: sending clear to send message for engine
+socket.SendMessage(false_RTS, data_len, false_RTS_data)
 	
 
