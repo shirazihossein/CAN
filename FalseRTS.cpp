@@ -13,6 +13,7 @@
 #include <linux/can/raw.h>
 #include <queue>          // std::queue
 #include <thread>
+
 using namespace std;
 
 
@@ -96,23 +97,31 @@ void read_filter_mess(char sourceAddr)
 
 void processing_messages()
 {
+	char* dataPacket;
+	bool IsArrayAllocated = 0;
 	while (1)
 	{
 		while (!QueueMessages.empty())
 		{
 			struct can_frame messFrame = QueueMessages.front();
-			char[] dataPacket;
 			
-			print_can_frame(a);
+			
+			print_can_frame(messFrame);
 			QueueMessages.pop();
 			
 			char bytes[sizeof messFrame.can_id];
 			std::copy(static_cast<const char*>(static_cast<const void*>(&messFrame.can_id)),static_cast<const char*>(static_cast<const void*>(&messFrame.can_id)) + sizeof messFrame.can_id,bytes);
 			
-			if ( bytes[2] == RTSPGN sizeof dataPacket == 0 )
+			if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
 			{
-				printf("000000000000000000")
+				printf("000000000000000000");
+				dataPacket = new char[messFrame.can_dlc];
+				IsArrayAllocated = true;
 			}
+			
+			
+			
+			
 			
 			/*
 			if ( bytes )
