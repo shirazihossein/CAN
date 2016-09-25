@@ -105,7 +105,7 @@ void read_filter_mess(char sourceAddr)
 {
 	
 	
-	while ( read_port() ) 
+	while ( true ) 
 	{
 		read_port();
 		char bytes[sizeof frame_read.can_id];
