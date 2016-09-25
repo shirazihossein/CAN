@@ -13,33 +13,15 @@ false_RTS_data  = "102C0001FFEBFE00"
 data_len = 8
 
 
-def Sending_False_RTS(e):
 
-	while 1 :
+print ("#second step: waiting for engine to send a clera to send message")
 
-		print ("#second step: waiting for engine to send a clera to send message")
-
-		cf= socket.GetMessage(can_name)
-		while (cf[0] != first_RTS):
-			cf= socket.GetMessage(can_name)
+cf= socket.GetMessage(can_name)
+while (cf[0] != first_RTS):
+	cf= socket.GetMessage(can_name)
 
 
-		#Third step: sending clear to send message for engine
-		socket.SendMessage(false_RTS, data_len, false_RTS_data)
-
-		#Third step: sending clear to send message for engine
-		socket.SendMessage(false_RTS, data_len, false_RTS_data)
-
-		#Third step: sending clear to send message for engine
-		socket.SendMessage(false_RTS, data_len, false_RTS_data)
-
-		#Third step: sending clear to send message for engine
-		socket.SendMessage(false_RTS, data_len, false_RTS_data)
+#Third step: sending clear to send message for engine
+socket.SendMessage(false_RTS, data_len, false_RTS_data)
 	
-
-_thread.start_new_thread( Sending_False_RTS , (strDes,) )
-
-while 1:
-   pass	
-
 

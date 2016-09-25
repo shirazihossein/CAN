@@ -161,9 +161,11 @@ void processing_messages()
 					dataPacket[i + offset] = messFrame.data[i+1];
 			}
 			
-			for (int i = 0 ; i < dataPacketLen  ; i++ )
-				printf(" %02X " , dataPacket[i] );
-			printf("\n");
+			printf( "Lenght of data %d \n" , dataPacketLen)
+			
+			//for (int i = 0 ; i < dataPacketLen  ; i++ )
+			//	printf(" %02X " , dataPacket[i] );
+			//printf("\n");
 		}
 	}
 
