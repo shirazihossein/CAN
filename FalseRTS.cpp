@@ -200,6 +200,7 @@ int send_request()
 
 int main(void)
 {
+	/*
 	open_port();
 	send_request();
 	
@@ -208,8 +209,15 @@ int main(void)
 
 	listner.join();
 	processor.join();
+	*/
+	
 
-    
+char* dataPacket;
+dataPacket = new char[10];
+for (int i = 0 ; i < 20  ; i++ )
+	dataPacket[i] = 1;
+
+
     return 0;
 }
 
