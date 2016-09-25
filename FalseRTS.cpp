@@ -98,6 +98,7 @@ int send_CTS()
 void read_filter_mess(char sourceAddr)
 {
 	
+	
 	while ( read_port() ) 
 	{
 		read_port();
