@@ -142,7 +142,7 @@ void processing_messages()
 				IsArrayAllocated = true;
 				printf("datapacketlen = %d \n" , dataPacketLen);
 			}
-			else if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
+			else if ( bytes[2] == RTSPGN &&  IsArrayAllocated )
 			{
 				printf("Get Second RTS \n");
 				print_can_frame(messFrame);
