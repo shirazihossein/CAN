@@ -135,13 +135,15 @@ void processing_messages()
 			
 			if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
 			{
+				send_CTS();
 				printf("Get RTS \n");
 				print_can_frame(messFrame);
 				dataPacketLen = 7 * messFrame.data[3];
 				dataPacket = new char[dataPacketLen];
 				IsArrayAllocated = true;
 				dataPacketLen = messFrame.can_dlc;
-				send_CTS();
+				printf("datapacketlen = \d" , dataPacketLen);
+				
 			}
 			else if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
 			{
