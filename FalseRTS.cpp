@@ -108,10 +108,8 @@ void processing_messages()
 int send_request()
 {
 	struct can_frame frame;
-	
 	frame.can_id  = 0x00EA0011;
 	frame.can_dlc = 8;
-	
 	frame.data[0] = 0xEB;
 	frame.data[1] = 0xFE;
 	
@@ -123,8 +121,8 @@ int send_request()
 
 int main(void)
 {
-	
-	send_request();
+	while (true)
+		send_request();
 	
 	thread listner (read_filter_mess , ECUAddress);
 	thread processor (processing_messages );
