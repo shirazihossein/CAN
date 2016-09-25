@@ -90,7 +90,7 @@ void read_filter_mess(char sourceAddr)
         if ( bytes[1] == sourceAddr )
         {
 			QueueMessages.push (frame_read);
-			print_can_frame(frame_read);
+			//print_can_frame(frame_read);
 		}
 	}
 	}
@@ -105,17 +105,13 @@ void processing_messages()
 		{
 			struct can_frame messFrame = QueueMessages.front();
 			
-			
-			
-			print_can_frame(messFrame);
 			QueueMessages.pop();
-			
 			char bytes[sizeof messFrame.can_id];
 			std::copy(static_cast<const char*>(static_cast<const void*>(&messFrame.can_id)),static_cast<const char*>(static_cast<const void*>(&messFrame.can_id)) + sizeof messFrame.can_id,bytes);
 			
 			if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
 			{
-				printf("000000000000000000");
+				print_can_frame(messFrame);
 				dataPacket = new char[messFrame.can_dlc];
 				IsArrayAllocated = true;
 			}
