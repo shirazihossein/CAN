@@ -142,16 +142,14 @@ void processing_messages()
 				dataPacket = new char[dataPacketLen];
 				IsArrayAllocated = true;
 				printf("datapacketlen = %d \n" , dataPacketLen);
-				
 			}
-			else if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
+			else if ( bytes[2] == RTSPGN &&  IsArrayAllocated )
 			{
 				printf("Get Second RTS \n");
 				print_can_frame(messFrame);
 				dataPacketLen = 7 * messFrame.data[3];
 				dataPacket = new char[dataPacketLen];
 				IsArrayAllocated = true;
-				dataPacketLen = messFrame.can_dlc;
 			}
 			
 			else if ( bytes[2] = DataTransferPGN )
@@ -200,7 +198,7 @@ int send_request()
 
 int main(void)
 {
-	/*
+	
 	open_port();
 	send_request();
 	
@@ -209,14 +207,7 @@ int main(void)
 
 	listner.join();
 	processor.join();
-	*/
 	
-
-char* dataPacket;
-dataPacket = new char[10];
-for (int i = 0 ; i < 20  ; i++ )
-	dataPacket[i] = 1;
-
 
     return 0;
 }
