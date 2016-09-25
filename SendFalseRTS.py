@@ -12,8 +12,6 @@ second_step = "18ec" + strDes + "00"
 third_step = "00EC00" +  strDes.upper()
 third_step_data  = "110701FFFFEBFE00"
 
-
-
 print ("#second step: waiting for engine to send a clera to send message")
 
 cf= socket.GetMessage(can_name)
