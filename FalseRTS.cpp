@@ -166,8 +166,7 @@ void processing_messages()
 			printf("\n");
 		}
 	}
-	
-	
+
 	}
 	
 int send_request()
