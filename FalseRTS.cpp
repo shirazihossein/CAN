@@ -167,7 +167,6 @@ void processing_messages()
 	}
 	
 	
-	
 	}
 	
 int send_request()
