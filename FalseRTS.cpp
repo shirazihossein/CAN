@@ -25,7 +25,7 @@ struct sockaddr_can addr;
 struct ifreq ifr;
 struct can_frame frame_read;
 std::queue<can_frame> QueueMessages;
-char ECUAddress = 0X0B;
+char ECUAddress = 0x11;
 
 
 int open_port()
@@ -60,8 +60,7 @@ int read_port()
 
 int write_port(can_frame *frame )
 {
-	
-	//nbytes = write(s, &frame, sizeof(struct can_frame));
+	return write(s, &frame, sizeof(struct can_frame));
 }
 
 void print_can_frame ( struct can_frame frame )
@@ -91,43 +90,48 @@ void read_filter_mess(char sourceAddr)
 	}
 	}
 
-
+void processing_messages()
+{
+	while (1)
+	{
+		while (!QueueMessages.empty())
+		{
+			struct can_frame a = QueueMessages.front();
+			print_can_frame(a);
+			QueueMessages.pop();
+		}
+	}
+	
+	
+	}
+	
+void send_request()
+{
+	struct can_frame frame
+	
+	frame.can_id  = 0x00EA0011;
+	frame.can_dlc = 8;
+	
+	frame.data[0] = 0xEB;
+	frame.data[1] = 0xFE;
+	
+	return write_port(*frame);
+}
+	 
+	
+	
 
 int main(void)
 {
+	
+	send_request();
+	
 	thread listner (read_filter_mess , ECUAddress);
-	
- 
-	while (!QueueMessages.empty())
-	{
-		struct can_frame a = QueueMessages.front();
-		print_can_frame(a);
-		QueueMessages.pop();
-	}
-	
+	thread processor (processing_messages );
+
 	listner.join();
+	processor.join();
 
-
-	
-	/*
-
-	
-	while (1)
-	{
-		printf("myqueue contains: " ) ;
-		
-		
-	
-	frame.can_id  = 0x1412;
-	frame.can_dlc = 2;
-	for (int i = 0 ; i < frame.can_dlc ; i++ )
-		frame.data[i] = i;
-	
-	
-	//write_port(*frame);
-	}
-	 
-	 */
     
     return 0;
 }
