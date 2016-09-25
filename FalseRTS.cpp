@@ -141,7 +141,6 @@ void processing_messages()
 				dataPacketLen = 7 * messFrame.data[3];
 				dataPacket = new char[dataPacketLen];
 				IsArrayAllocated = true;
-				dataPacketLen = messFrame.can_dlc;
 				printf("datapacketlen = %d \n" , dataPacketLen);
 				
 			}
