@@ -1,5 +1,5 @@
 import SocketManager, time
-from threading import Thread
+import _thread
 from Config import Config as cg
 
 
@@ -13,9 +13,9 @@ false_RTS_data  = "102C0001FFEBFE00"
 data_len = 8
 
 
-def Sending_False_RTS:
+def Sending_False_RTS(e):
 
-	while True
+	while 1 :
 
 		print ("#second step: waiting for engine to send a clera to send message")
 
@@ -37,7 +37,7 @@ def Sending_False_RTS:
 		socket.SendMessage(false_RTS, data_len, false_RTS_data)
 	
 
-_thread.start_new_thread( Sending_False_RTS )
+_thread.start_new_thread( Sending_False_RTS , (strDes,) )
 
 while 1:
    pass	
