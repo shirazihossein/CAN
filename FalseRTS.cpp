@@ -155,6 +155,7 @@ void processing_messages()
 			
 			for (int i = 0 ; i < dataPacketLen  ; i++ )
 				printf(" %02X " , dataPacket[i] );
+			printf("\n");
 		}
 	}
 	
