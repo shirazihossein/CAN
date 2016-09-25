@@ -107,8 +107,10 @@ void processing_messages()
 	
 int send_request()
 {
+	int masker_send = 2147483648;
 	struct can_frame frame;
-	frame.can_id  = 15335441;
+	
+	frame.can_id  = masker_send | 15335441;
 	frame.can_dlc = 8;
 	frame.data[0] = 0xEB;
 	frame.data[1] = 0xFE;
