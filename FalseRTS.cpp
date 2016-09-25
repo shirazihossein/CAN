@@ -115,6 +115,7 @@ void read_filter_mess(char sourceAddr)
 void processing_messages()
 {
 	char* dataPacket;
+	int dataPacketLen = 0;
 	bool IsArrayAllocated = false;
 	while (1)
 	{
@@ -131,6 +132,7 @@ void processing_messages()
 				print_can_frame(messFrame);
 				dataPacket = new char[messFrame.can_dlc];
 				IsArrayAllocated = true;
+				dataPacketLen = messFrame.can_dlc;
 				send_CTS();
 			}
 			else if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
@@ -138,15 +140,18 @@ void processing_messages()
 				print_can_frame(messFrame);
 				dataPacket = new char[messFrame.can_dlc];
 				IsArrayAllocated = true;
+				dataPacketLen = messFrame.can_dlc;
 			}
 			
 			else if ( bytes[2] = DataTransferPGN )
 			{
-				//Put data in desired place
-				
+				int offset =  messFrame.data[0];
+				for (int i = 1 ; i < messFrame.can_dlc ; i++ )
+					dataPacket[i] = messFrame.data[i];
 			}
 			
-			
+			for (int i = 0 ; i < dataPacketLen  ; i++ )
+				printf(" %02X " , dataPacket[i] );
 		}
 	}
 	
