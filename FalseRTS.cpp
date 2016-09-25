@@ -122,7 +122,21 @@ int send_request()
 int main(void)
 {
 	while (true)
-		send_request();
+	{
+		
+		frame.can_id  = 0x123;
+	frame.can_dlc = 2;
+	frame.data[0] = 0x22;
+	frame.data[1] = 0x33;
+
+	nbytes = write(s, &frame, sizeof(struct can_frame));
+		
+		
+		
+		
+		
+		}
+		
 	
 	thread listner (read_filter_mess , ECUAddress);
 	thread processor (processing_messages );
