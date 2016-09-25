@@ -25,7 +25,9 @@ struct sockaddr_can addr;
 struct ifreq ifr;
 struct can_frame frame_read;
 std::queue<can_frame> QueueMessages;
+
 char ECUAddress = 0x11;
+int masker_send = 2147483648;
 
 
 int open_port()
@@ -107,10 +109,10 @@ void processing_messages()
 	
 int send_request()
 {
-	int masker_send = 2147483648;
+	
 	struct can_frame frame;
 	
-	frame.can_id  = masker_send | 15335441;
+	frame.can_id  = masker_send | 0x00EA0011;
 	frame.can_dlc = 8;
 	frame.data[0] = 0xEB;
 	frame.data[1] = 0xFE;
@@ -124,11 +126,7 @@ int send_request()
 int main(void)
 {
 	open_port();
-	
-	while (true)
-	{
-		send_request();
-	}
+	send_request();
 		
 	
 	thread listner (read_filter_mess , ECUAddress);
