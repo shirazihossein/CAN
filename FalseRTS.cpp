@@ -193,13 +193,10 @@ int send_request()
 	return write_port(frame);
 }
 	 
-	
-	
-
 int main(void)
 {
 	
-	open_port();
+	open_port()
 	send_request();
 	
 	thread listner (read_filter_mess , ECUAddress);
