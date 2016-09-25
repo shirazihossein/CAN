@@ -108,7 +108,7 @@ void read_filter_mess(char sourceAddr)
         if ( bytes[1] == sourceAddr )
         {
 			QueueMessages.push (frame_read);
-			//print_can_frame(frame_read);
+			printf("One Message Added to queue");
 		}
 	}
 	}
