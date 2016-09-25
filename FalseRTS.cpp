@@ -137,7 +137,8 @@ void processing_messages()
 			{
 				printf("Get RTS \n");
 				print_can_frame(messFrame);
-				dataPacket = new char[messFrame.can_dlc];
+				dataPacketLen = 7 * messFrame.data[3];
+				dataPacket = new char[dataPacketLen];
 				IsArrayAllocated = true;
 				dataPacketLen = messFrame.can_dlc;
 				send_CTS();
@@ -146,7 +147,8 @@ void processing_messages()
 			{
 				printf("Get Second RTS \n");
 				print_can_frame(messFrame);
-				dataPacket = new char[messFrame.can_dlc];
+				dataPacketLen = 7 * messFrame.data[3];
+				dataPacket = new char[dataPacketLen];
 				IsArrayAllocated = true;
 				dataPacketLen = messFrame.can_dlc;
 			}
@@ -154,9 +156,9 @@ void processing_messages()
 			else if ( bytes[2] = DataTransferPGN )
 			{
 				printf("Get data packets \n");
-				int offset =  messFrame.data[0];
-				for (int i = 1 ; i < messFrame.can_dlc ; i++ )
-					dataPacket[i] = messFrame.data[i];
+				int offset =  (messFrame.data[0] - 1 ) * 7;
+				for (int i = 0 ; i < 7 ; i++ )
+					dataPacket[i + offset] = messFrame.data[i+1];
 			}
 			
 			for (int i = 0 ; i < dataPacketLen  ; i++ )
