@@ -16,8 +16,6 @@
 
 using namespace std;
 
-
-
 int s;
 int read_can_port;
 char ifname[] = "can1";
@@ -31,7 +29,7 @@ char ECUAddress = 0x11;
 char RTSPGN = 0xEC;
 char DataTransferPGN = 0xEB;
 int masker_send = 2147483648;
-
+int numberOfRepeat = 3;
 
 
 int open_port()
@@ -81,13 +79,17 @@ void print_can_frame ( struct can_frame frame )
 
 int send_CTS()
 {
-	printf("Send CTS \n");
 	struct can_frame frame;
-	
-	frame.can_id  = masker_send | 0x00EC0011;
-	frame.can_dlc = 8;
-	frame.data[0] = 0x11;
-	frame.data[1] = 0x07;
+	for ( int i = 0 ; i < numberOfRepeat ; i++ )
+	{
+		printf("Send CTS \n");
+		
+		
+		frame.can_id  = masker_send | 0x00EC0011;
+		frame.can_dlc = 8;
+		frame.data[0] = 0x11;
+		frame.data[1] = 0x07;
+	}
 	
 	return write_port(frame);
 }
@@ -165,13 +167,17 @@ void processing_messages()
 	
 int send_request()
 {
-	printf("Send Request \n");
 	struct can_frame frame;
-	
-	frame.can_id  = masker_send | 0x00EA0011;
-	frame.can_dlc = 8;
-	frame.data[0] = 0xEB;
-	frame.data[1] = 0xFE;
+	for ( int i = 0 ; i < numberOfRepeat ; i++ )
+	{
+		printf("Send Request \n");
+		
+		
+		frame.can_id  = masker_send | 0x00EA0011;
+		frame.can_dlc = 8;
+		frame.data[0] = 0xEB;
+		frame.data[1] = 0xFE;
+	}
 	
 	return write_port(frame);
 }
