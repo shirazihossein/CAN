@@ -58,7 +58,7 @@ int read_port()
 	return recvbytes;
 }
 
-int write_port(can_frame *frame )
+int write_port(can_frame frame )
 {
 	return write(s, &frame, sizeof(struct can_frame));
 }
@@ -115,7 +115,7 @@ int send_request()
 	frame.data[0] = 0xEB;
 	frame.data[1] = 0xFE;
 	
-	return write_port(*frame);
+	return write_port(frame);
 }
 	 
 	
