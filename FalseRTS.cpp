@@ -29,6 +29,7 @@ std::queue<can_frame> QueueMessages;
 
 char ECUAddress = 0x11;
 char RTSPGN = 0xEC;
+char DataTransferPGN = 0xEB;
 int masker_send = 2147483648;
 
 
@@ -78,6 +79,21 @@ void print_can_frame ( struct can_frame frame )
 }
 
 
+int send_CTS()
+{
+	
+	struct can_frame frame;
+	
+	frame.can_id  = masker_send | 0x00EC0011;
+	frame.can_dlc = 8;
+	frame.data[0] = 0x11;
+	frame.data[1] = 0x07;
+	
+	return write_port(frame);
+}
+
+
+
 
 void read_filter_mess(char sourceAddr)
 {
@@ -114,20 +130,20 @@ void processing_messages()
 				print_can_frame(messFrame);
 				dataPacket = new char[messFrame.can_dlc];
 				IsArrayAllocated = true;
+				send_CTS();
+			}
+			else if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
+			{
+				print_can_frame(messFrame);
+				dataPacket = new char[messFrame.can_dlc];
+				IsArrayAllocated = true;
 			}
 			
-			
-			
-			
-			
-			/*
-			if ( bytes )
-				create MEM
-			else if (it is second rts )
-				change MEM
-			else If (it data ) 
-				put them in array
-			*/
+			else if ( bytes[2] = DataTransferPGN )
+			{
+				//Put data in desired place
+				
+			}
 			
 			
 		}
