@@ -76,7 +76,7 @@ void print_can_frame ( struct can_frame frame )
 
 void read_filter_mess(char sourceAddr)
 {
-	open_port();
+	
 	while ( read_port() ) 
 	{
 		read_port();
@@ -121,6 +121,8 @@ int send_request()
 
 int main(void)
 {
+	open_port();
+	
 	while (true)
 	{
 		struct can_frame frame;
