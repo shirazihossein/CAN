@@ -83,8 +83,6 @@ int send_CTS()
 	{
 		printf("Send CTS \n");
 
-  can1  00EC0011   [8]  11 07 01 FF FF EB FE 00
-		
 		frame.can_id  = masker_send | 0x00EC0011;
 		frame.can_dlc = 8;
 		frame.data[0] = 0x11;
