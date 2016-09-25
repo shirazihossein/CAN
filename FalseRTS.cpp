@@ -107,7 +107,7 @@ void processing_messages()
 	
 int send_request()
 {
-	struct can_frame frame
+	struct can_frame frame;
 	
 	frame.can_id  = 0x00EA0011;
 	frame.can_dlc = 8;
