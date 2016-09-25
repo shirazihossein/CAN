@@ -98,7 +98,7 @@ void read_filter_mess(char sourceAddr)
 void processing_messages()
 {
 	char* dataPacket;
-	bool IsArrayAllocated = 0;
+	bool IsArrayAllocated = false;
 	while (1)
 	{
 		while (!QueueMessages.empty())
