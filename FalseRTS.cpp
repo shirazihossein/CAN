@@ -81,7 +81,7 @@ void print_can_frame ( struct can_frame frame )
 
 int send_CTS()
 {
-	printf("Send CTS");
+	printf("Send CTS \n");
 	struct can_frame frame;
 	
 	frame.can_id  = masker_send | 0x00EC0011;
@@ -129,7 +129,7 @@ void processing_messages()
 			
 			if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
 			{
-				printf("Get RTS");
+				printf("Get RTS \n");
 				print_can_frame(messFrame);
 				dataPacket = new char[messFrame.can_dlc];
 				IsArrayAllocated = true;
@@ -138,7 +138,7 @@ void processing_messages()
 			}
 			else if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
 			{
-				printf("Get Second RTS");
+				printf("Get Second RTS \n");
 				print_can_frame(messFrame);
 				dataPacket = new char[messFrame.can_dlc];
 				IsArrayAllocated = true;
@@ -147,7 +147,7 @@ void processing_messages()
 			
 			else if ( bytes[2] = DataTransferPGN )
 			{
-				printf("Get data packets");
+				printf("Get data packets \n");
 				int offset =  messFrame.data[0];
 				for (int i = 1 ; i < messFrame.can_dlc ; i++ )
 					dataPacket[i] = messFrame.data[i];
@@ -163,7 +163,7 @@ void processing_messages()
 	
 int send_request()
 {
-	printf("Send Request");
+	printf("Send Request \n");
 	struct can_frame frame;
 	
 	frame.can_id  = masker_send | 0x00EA0011;
