@@ -142,7 +142,7 @@ void processing_messages()
 				dataPacket = new char[dataPacketLen];
 				IsArrayAllocated = true;
 				dataPacketLen = messFrame.can_dlc;
-				printf("datapacketlen = \d" , dataPacketLen);
+				printf("datapacketlen = %d" , dataPacketLen);
 				
 			}
 			else if ( bytes[2] == RTSPGN && ! IsArrayAllocated )
