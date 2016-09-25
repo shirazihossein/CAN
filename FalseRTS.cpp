@@ -106,6 +106,7 @@ void processing_messages()
 			struct can_frame messFrame = QueueMessages.front();
 			
 			
+			
 			print_can_frame(messFrame);
 			QueueMessages.pop();
 			
