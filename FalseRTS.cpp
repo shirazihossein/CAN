@@ -196,7 +196,6 @@ int send_request()
 	 
 int main(void)
 {
-	
 	open_port();
 	send_request();
 	
