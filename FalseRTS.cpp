@@ -109,7 +109,7 @@ int send_request()
 {
 	struct can_frame frame;
 	frame.can_id  = 0x00EA0011;
-	frame.can_dlc = 8;
+	frame.can_dlc = 2;
 	frame.data[0] = 0xEB;
 	frame.data[1] = 0xFE;
 	
