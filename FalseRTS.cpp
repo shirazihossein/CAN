@@ -125,19 +125,8 @@ int main(void)
 	
 	while (true)
 	{
-		struct can_frame frame;
-		frame.can_id  = 0x123;
-	frame.can_dlc = 2;
-	frame.data[0] = 0x22;
-	frame.data[1] = 0x33;
-
-	nbytes = write(s, &frame, sizeof(struct can_frame));
-		
-		
-		
-		
-		
-		}
+		send_request();
+	}
 		
 	
 	thread listner (read_filter_mess , ECUAddress);
