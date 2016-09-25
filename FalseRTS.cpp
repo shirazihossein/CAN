@@ -51,9 +51,6 @@ int open_port()
 		perror("Error in socket bind");
 		return -2;
 	}
-	
-	
-	
 }
 
 
