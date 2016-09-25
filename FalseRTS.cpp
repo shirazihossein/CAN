@@ -25,10 +25,7 @@ struct sockaddr_can addr;
 struct ifreq ifr;
 struct can_frame frame_read;
 std::queue<can_frame> QueueMessages;
-char ECUAddress = 0X11;
-
-
-
+char ECUAddress = 0X0B;
 
 
 int open_port()
