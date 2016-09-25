@@ -82,17 +82,17 @@ int send_CTS()
 	for ( int i = 0 ; i < numberOfRepeat ; i++ )
 	{
 		printf("Send CTS \n");
-		
+	
 		frame.can_id  = masker_send | 0x00EC0011;
 		frame.can_dlc = 8;
 		frame.data[0] = 0x11;
 		frame.data[1] = 0x07;
-		frame.data[2] = 0x00;
-		frame.data[3] = 0x00;
-		frame.data[4] = 0xD0;
-		frame.data[5] = 0xBD;
-		frame.data[6] = 0x55;
-		frame.data[7] = 0xB6;
+		frame.data[2] = 0x01;
+		frame.data[3] = 0xFF;
+		frame.data[4] = 0xFF;
+		frame.data[5] = 0xEB;
+		frame.data[6] = 0xFE;
+		frame.data[7] = 0x00;
 	}
 	
 	return write_port(frame);
@@ -182,7 +182,7 @@ int send_request()
 		frame.data[1] = 0xFE;
 		frame.data[2] = 0x00;
 		frame.data[3] = 0x00;
-		frame.data[4] = 0x03;
+		frame.data[4] = 0x00;
 		frame.data[5] = 0x00;
 		frame.data[6] = 0x00;
 		frame.data[7] = 0x00;
