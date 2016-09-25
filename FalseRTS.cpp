@@ -27,7 +27,9 @@ struct can_frame frame_read;
 std::queue<can_frame> QueueMessages;
 
 char ECUAddress = 0x11;
+char RTSPGN = 0xEC;
 int masker_send = 2147483648;
+
 
 
 int open_port()
@@ -98,9 +100,30 @@ void processing_messages()
 	{
 		while (!QueueMessages.empty())
 		{
-			struct can_frame a = QueueMessages.front();
+			struct can_frame messFrame = QueueMessages.front();
+			char[] dataPacket;
+			
 			print_can_frame(a);
 			QueueMessages.pop();
+			
+			char bytes[sizeof messFrame.can_id];
+			std::copy(static_cast<const char*>(static_cast<const void*>(&messFrame.can_id)),static_cast<const char*>(static_cast<const void*>(&messFrame.can_id)) + sizeof messFrame.can_id,bytes);
+			
+			if ( bytes[2] == RTSPGN sizeof dataPacket == 0 )
+			{
+				printf("000000000000000000")
+			}
+			
+			/*
+			if ( bytes )
+				create MEM
+			else if (it is second rts )
+				change MEM
+			else If (it data ) 
+				put them in array
+			*/
+			
+			
 		}
 	}
 	
@@ -127,7 +150,6 @@ int main(void)
 {
 	open_port();
 	send_request();
-		
 	
 	thread listner (read_filter_mess , ECUAddress);
 	thread processor (processing_messages );
