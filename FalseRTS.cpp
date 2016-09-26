@@ -138,7 +138,7 @@ void processing_messages()
 				printf("Get RTS \n");
 				print_can_frame(messFrame);
 				dataPacketLen = 7 * messFrame.data[3];
-				dataPacket = new char[dataPacketLen];
+				dataPacket = (char*) malloc(dataPacketLen);
 				IsArrayAllocated = true;
 				printf("datapacketlen = %d \n" , dataPacketLen);
 			}
@@ -147,7 +147,7 @@ void processing_messages()
 				printf("Get Second RTS \n");
 				print_can_frame(messFrame);
 				dataPacketLen = 7 * messFrame.data[3];
-				dataPacket = new char[dataPacketLen];
+				dataPacket = (char*)  realloc(dataPacket,dataPacketLen);
 				IsArrayAllocated = true;
 				printf("datapacketlen = %d \n" , dataPacketLen);
 			}
